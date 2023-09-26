@@ -367,6 +367,12 @@ pre-build:
 		-C ${_FIRMWAREDIR} --strip-components 2 \
 		*/firmware/mt76??_e?.bin
 .endif
+.if ${PORT_OPTIONS:MFW_BRCM}
+	${LN} -sf brcmfmac43602-pcie.bin \
+		${_FIRMWAREDIR}/brcm/brcmfmac43602-pcie.FreeBSD-BHYVE.bin
+	${CP} /usr/home/suchipi/Code/freebsd-wifibox-port/net/wifibox-alpine/brcmfmac43602-pcie.txt \
+		${_FIRMWAREDIR}/brcm/brcmfmac43602-pcie.txt
+.endif
 
 post-install:
 .if empty(PORT_OPTIONS:MUDS_PASSTHRU)
